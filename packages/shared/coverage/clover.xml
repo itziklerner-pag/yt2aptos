@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1746069889898" clover="3.2.0">
+  <project timestamp="1746069889898" name="All files">
+    <metrics statements="119" coveredstatements="68" conditionals="12" coveredconditionals="11" methods="37" coveredmethods="21" elements="168" coveredelements="100" complexity="0" loc="119" ncloc="119" packages="2" files="3" classes="3"/>
+    <package name="storage">
+      <metrics statements="49" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="14" coveredmethods="0"/>
+      <file name="provider.factory.test.ts" path="/Users/itziklerner/dev/ai/aptos/yt2aptos/packages/shared/src/storage/provider.factory.test.ts">
+        <metrics statements="39" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+      </file>
+      <file name="provider.factory.ts" path="/Users/itziklerner/dev/ai/aptos/yt2aptos/packages/shared/src/storage/provider.factory.ts">
+        <metrics statements="10" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="storage.providers">
+      <metrics statements="70" coveredstatements="68" conditionals="11" coveredconditionals="11" methods="23" coveredmethods="21"/>
+      <file name="local-file-system.provider.ts" path="/Users/itziklerner/dev/ai/aptos/yt2aptos/packages/shared/src/storage/providers/local-file-system.provider.ts">
+        <metrics statements="70" coveredstatements="68" conditionals="11" coveredconditionals="11" methods="23" coveredmethods="21"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="32" count="31" type="stmt"/>
+        <line num="33" count="31" type="stmt"/>
+        <line num="34" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="31" type="stmt"/>
+        <line num="47" count="33" type="stmt"/>
+        <line num="48" count="33" type="stmt"/>
+        <line num="56" count="4" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+        <line num="69" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="95" count="5" type="stmt"/>
+        <line num="96" count="5" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="115" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="119" count="1" type="stmt"/>
+        <line num="127" count="1" type="stmt"/>
+        <line num="128" count="1" type="stmt"/>
+        <line num="137" count="2" type="stmt"/>
+        <line num="138" count="2" type="stmt"/>
+        <line num="139" count="2" type="stmt"/>
+        <line num="140" count="1" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="151" count="1" type="stmt"/>
+        <line num="152" count="1" type="stmt"/>
+        <line num="161" count="3" type="stmt"/>
+        <line num="162" count="3" type="stmt"/>
+        <line num="163" count="3" type="stmt"/>
+        <line num="165" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="166" count="1" type="stmt"/>
+        <line num="168" count="1" type="stmt"/>
+        <line num="178" count="3" type="stmt"/>
+        <line num="179" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="180" count="1" type="stmt"/>
+        <line num="182" count="2" type="stmt"/>
+        <line num="192" count="7" type="stmt"/>
+        <line num="193" count="7" type="stmt"/>
+        <line num="195" count="6" type="stmt"/>
+        <line num="212" count="2" type="stmt"/>
+        <line num="214" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="215" count="1" type="stmt"/>
+        <line num="216" count="1" type="stmt"/>
+        <line num="229" count="12" type="cond" truecount="1" falsecount="0"/>
+        <line num="230" count="1" type="stmt"/>
+        <line num="234" count="11" type="stmt"/>
+        <line num="237" count="11" type="stmt"/>
+        <line num="251" count="6" type="stmt"/>
+        <line num="252" count="6" type="stmt"/>
+        <line num="254" count="6" type="stmt"/>
+        <line num="265" count="6" type="stmt"/>
+        <line num="266" count="6" type="stmt"/>
+        <line num="275" count="6" type="stmt"/>
+        <line num="278" count="6" type="stmt"/>
+        <line num="296" count="6" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+  </project>
+</coverage>

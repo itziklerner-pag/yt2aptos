@@ -1,0 +1,266 @@
+import { 
+  WalletAuthRequest, 
+  AccountLinkRequest, 
+  AuthResponse 
+} from '../../../shared/src/auth/types';
+import api from '../utils/api-client';
+import authService from './auth.service';
+
+/**
+ * Service for Aptos blockchain wallet integration with the frontend
+ */
+class AptosService {
+  private wallet: any = null; // Will be set when connected to a wallet
+  
+  /**
+   * Initialize the Aptos service
+   */
+  constructor() {
+    // Check if wallet is available in window
+    this.detectWallet();
+    
+    // Listen for wallet changes (account changes, disconnect, etc.)
+    this.setupWalletListeners();
+  }
+  
+  /**
+   * Detect available wallet
+   */
+  private detectWallet(): void {
+    // Check if Petra, Martian, or other Aptos wallets are available in window
+    if (typeof window !== 'undefined') {
+      // Check for window.aptos (Petra wallet)
+      if ((window as any).aptos) {
+        console.log('Petra wallet detected');
+      }
+      
+      // Check for other Aptos wallets as needed
+      // This can be expanded as more wallets become available
+    }
+  }
+  
+  /**
+   * Setup wallet event listeners
+   */
+  private setupWalletListeners(): void {
+    if (typeof window !== 'undefined') {
+      // Listen for wallet events
+      // This will be implemented based on the specific wallet's API
+      
+      // Example for Petra wallet events:
+      if ((window as any).aptos) {
+        (window as any).aptos.onAccountChange((account: any) => {
+          console.log('Wallet account changed:', account);
+          // Handle account change
+        });
+        
+        (window as any).aptos.onNetworkChange((network: any) => {
+          console.log('Wallet network changed:', network);
+          // Handle network change
+        });
+        
+        (window as any).aptos.onDisconnect(() => {
+          console.log('Wallet disconnected');
+          this.wallet = null;
+          // Handle wallet disconnect
+        });
+      }
+    }
+  }
+  
+  /**
+   * Check if a wallet is connected
+   */
+  public isWalletConnected(): boolean {
+    return !!this.wallet;
+  }
+  
+  /**
+   * Get the connected wallet address
+   */
+  public getWalletAddress(): string | null {
+    try {
+      return this.wallet?.address || null;
+    } catch (error) {
+      console.error('Error getting wallet address:', error);
+      return null;
+    }
+  }
+  
+  /**
+   * Connect to an Aptos wallet
+   */
+  public async connectWallet(): Promise<string | null> {
+    try {
+      // Connect to the wallet
+      if (typeof window !== 'undefined') {
+        if ((window as any).aptos) {
+          // Connect to Petra wallet
+          try {
+            const response = await (window as any).aptos.connect();
+            console.log('Connected to Petra wallet:', response);
+            this.wallet = response;
+            return response.address;
+          } catch (error) {
+            console.error('Error connecting to Petra wallet:', error);
+            throw error;
+          }
+        } else {
+          throw new Error('No Aptos wallet detected. Please install Petra wallet or another Aptos wallet extension.');
+        }
+      }
+      return null;
+    } catch (error) {
+      console.error('Error connecting wallet:', error);
+      throw error;
+    }
+  }
+  
+  /**
+   * Disconnect from the wallet
+   */
+  public async disconnectWallet(): Promise<void> {
+    try {
+      if (typeof window !== 'undefined' && this.wallet) {
+        if ((window as any).aptos) {
+          // Disconnect from Petra wallet
+          await (window as any).aptos.disconnect();
+        }
+        this.wallet = null;
+      }
+    } catch (error) {
+      console.error('Error disconnecting wallet:', error);
+    }
+  }
+  
+  /**
+   * Generate a nonce for wallet authentication
+   */
+  public async generateNonce(address: string): Promise<{ nonce: string, prefix: string }> {
+    try {
+      const response = await api.post<{ nonce: string, walletAuthPrefix: string }>('/auth/wallet/nonce', { address });
+      return {
+        nonce: response.data.nonce,
+        prefix: response.data.walletAuthPrefix
+      };
+    } catch (error) {
+      console.error('Error generating nonce:', error);
+      throw error;
+    }
+  }
+  
+  /**
+   * Sign a message with the wallet
+   */
+  public async signMessage(message: string): Promise<string> {
+    try {
+      if (!this.wallet) {
+        throw new Error('Wallet not connected');
+      }
+      
+      if (typeof window !== 'undefined') {
+        if ((window as any).aptos) {
+          // Sign with Petra wallet
+          const response = await (window as any).aptos.signMessage({
+            message, // The message to sign
+            nonce: 'YT2APTOS_NONCE' // Optional nonce for additional security
+          });
+          
+          console.log('Message signed with Petra wallet:', response);
+          return response.signature;
+        } else {
+          throw new Error('No Aptos wallet detected');
+        }
+      }
+      
+      throw new Error('Browser environment not available');
+    } catch (error) {
+      console.error('Error signing message:', error);
+      throw error;
+    }
+  }
+  
+  /**
+   * Authenticate with wallet
+   */
+  public async authenticateWithWallet(): Promise<AuthResponse> {
+    try {
+      // 1. Connect to wallet
+      const address = await this.connectWallet();
+      
+      if (!address) {
+        throw new Error('Failed to connect to wallet');
+      }
+      
+      // 2. Generate nonce
+      const { nonce, prefix } = await this.generateNonce(address);
+      
+      // 3. Sign the message
+      const message = `${prefix}${nonce}`;
+      const signature = await this.signMessage(message);
+      
+      // 4. Authenticate with backend
+      const authRequest: WalletAuthRequest = {
+        address,
+        signature,
+        message
+      };
+      
+      const response = await api.post<AuthResponse>('/auth/wallet/auth', authRequest);
+      
+      // The AuthService will automatically detect the authentication response
+      // from the interceptor and update localStorage, but we still need to manually
+      // apply it directly to avoid any race conditions
+      localStorage.setItem('yt2aptos_auth_tokens', JSON.stringify(response.data.tokens));
+      localStorage.setItem('yt2aptos_user', JSON.stringify(response.data.user));
+      
+      return response.data;
+    } catch (error) {
+      console.error('Wallet authentication error:', error);
+      throw error;
+    }
+  }
+  
+  /**
+   * Link wallet to existing account
+   */
+  public async linkWalletToAccount(): Promise<{ message: string, user: any }> {
+    try {
+      // 1. Make sure user is authenticated
+      if (!authService.isAuthenticated()) {
+        throw new Error('You must be logged in to link a wallet');
+      }
+      
+      // 2. Connect to wallet
+      const address = await this.connectWallet();
+      
+      if (!address) {
+        throw new Error('Failed to connect to wallet');
+      }
+      
+      // 3. Generate nonce for linking
+      const { nonce, prefix } = await this.generateNonce(address);
+      
+      // 4. Sign the message
+      const message = `${prefix}${nonce}`;
+      const signature = await this.signMessage(message);
+      
+      // 5. Link the wallet
+      const linkRequest: AccountLinkRequest = {
+        address,
+        signature,
+        message
+      };
+      
+      const response = await api.post<{ message: string, user: any }>('/auth/wallet/link', linkRequest);
+      
+      return response.data;
+    } catch (error) {
+      console.error('Wallet linking error:', error);
+      throw error;
+    }
+  }
+}
+
+// Export singleton instance
+export default new AptosService();

@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # MongoDB database
+  mongo:
+    image: mongo:latest
+    container_name: yt2aptos-mongo
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
+    networks:
+      - yt2aptos-network
+
+  # Backend API service
+  backend:
+    build:
+      context: .
+      dockerfile: packages/backend/Dockerfile
+    container_name: yt2aptos-backend
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+    volumes:
+      - storage-data:/app/storage
+      - logs-data:/app/logs
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3000
+      MONGODB_URI: mongodb://${MONGO_USERNAME:-root}:${MONGO_PASSWORD:-password}@mongo:27017/yt2aptos?authSource=admin
+      STORAGE_TYPE: local
+      STORAGE_PATH: /app/storage
+      STORAGE_URL_PREFIX: ${BACKEND_URL:-http://localhost:3000}/files
+      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-in-production}
+      CORS_ORIGIN: ${FRONTEND_URL:-http://localhost:8080}
+    networks:
+      - yt2aptos-network
+
+  # Frontend web service
+  frontend:
+    build:
+      context: .
+      dockerfile: packages/frontend/Dockerfile
+    container_name: yt2aptos-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+    networks:
+      - yt2aptos-network
+
+# Persistent volumes
+volumes:
+  mongo-data:
+    driver: local
+  storage-data:
+    driver: local
+  logs-data:
+    driver: local
+
+# Network for connecting services
+networks:
+  yt2aptos-network:
+    driver: bridge

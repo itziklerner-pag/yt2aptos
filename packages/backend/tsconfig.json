@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "types": ["jest", "node"],
+    "strictNullChecks": true,
+    "composite": true,
+    "paths": {
+      "@yt2aptos/shared": ["../shared/src"],
+      "@yt2aptos/shared/*": ["../shared/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../shared" }
+  ]
+}
