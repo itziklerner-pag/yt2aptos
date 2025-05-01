@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -78,6 +79,7 @@ describe('NotFound Page Component', () => {
     const { container } = render(<NotFoundWithRouter />);
     
     // Check for centering classes/styles
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const notFoundElement = container.querySelector('.not-found');
     
     // Check if the style defines centering

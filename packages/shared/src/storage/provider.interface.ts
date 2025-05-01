@@ -95,4 +95,10 @@ export interface StorageProvider {
    * @returns Signed URL
    */
   getSignedUrl(path: string, expiry: number): Promise<string>;
+  
+  /**
+   * Get the base path for this storage provider
+   * @returns The base storage path
+   */
+  getBasePath(): string;
 }

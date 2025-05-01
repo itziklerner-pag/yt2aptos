@@ -20,7 +20,7 @@ describe('Error Handler Middleware', () => {
   // Setup mocks
   let mockRequest: Partial<Request>;
   let mockResponse: Partial<Response>;
-  let mockNext: jest.Mock<ReturnType<NextFunction>, Parameters<NextFunction>>;
+  let mockNext: jest.Mock;
   let jsonMock: jest.Mock;
   let statusMock: jest.Mock;
 

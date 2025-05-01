@@ -118,5 +118,11 @@ export const errorHandler = (
  * Middleware to handle 404 routes
  */
 export const notFoundHandler = (req: Request, res: Response, next: NextFunction) => {
+  // Add diagnostics to help identify the problem
+  console.log(`[DEBUG] Route not found: ${req.method} ${req.originalUrl}`);
+  console.log(`[DEBUG] API_PREFIX: ${process.env.API_PREFIX}`);
+  console.log(`[DEBUG] Request headers:`, JSON.stringify(req.headers, null, 2));
+  console.log(`[DEBUG] Request origin:`, req.headers.origin || req.headers.referer || 'unknown');
+  
   next(new NotFoundError(`Route not found: ${req.method} ${req.originalUrl}`));
 };

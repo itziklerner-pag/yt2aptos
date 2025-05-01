@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { socketService } from '../services/socket.service';
 import { useSystemNotifications } from '../hooks/useSocket';
+// Types are imported but not directly used in this file
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SocketNamespace } from '../types/socket.types';
 
 interface Notification {

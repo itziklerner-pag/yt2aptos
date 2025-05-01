@@ -295,4 +295,12 @@ export class LocalFileSystemProvider implements StorageProvider {
     
     return mimeTypes[ext] || 'application/octet-stream';
   }
+
+  /**
+   * Gets the base path for this storage provider
+   * @returns The base storage path
+   */
+  getBasePath(): string {
+    return this.basePath;
+  }
 }

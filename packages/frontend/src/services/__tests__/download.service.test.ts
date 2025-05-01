@@ -85,6 +85,7 @@ describe('Download Service', () => {
       const subscribeCallbacks: ((data: any) => void)[] = [];
       
       (socketService.subscribe as jest.Mock).mockImplementation(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (namespace, event, callback) => {
           subscribeCallbacks.push(callback);
           return jest.fn();

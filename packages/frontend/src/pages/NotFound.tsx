@@ -12,7 +12,7 @@ const NotFound: React.FC = () => {
           Return to Home
         </Link>
       </div>
-      <style jsx>{`
+      <style>{`
         .not-found {
           display: flex;
           align-items: center;

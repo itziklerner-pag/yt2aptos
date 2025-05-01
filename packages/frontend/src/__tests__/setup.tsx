@@ -50,6 +50,8 @@ class MockIntersectionObserver implements IntersectionObserver {
   readonly rootMargin: string = '0px';
   readonly thresholds: ReadonlyArray<number> = [0];
 
+  // callback is needed in the constructor signature for the type matching
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(private callback: IntersectionObserverCallback) {}
   
   observe = jest.fn();
@@ -63,6 +65,8 @@ global.IntersectionObserver = MockIntersectionObserver as unknown as typeof Inte
 
 // Mock for ResizeObserver
 class MockResizeObserver implements ResizeObserver {
+  // callback is needed in the constructor signature for the type matching
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   constructor(private callback: ResizeObserverCallback) {}
   
   observe = jest.fn();

@@ -5,6 +5,7 @@ import { Suspense, lazy } from 'react';
 const Home = lazy(() => import('./pages/Home'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const WebSocketDemo = lazy(() => import('./pages/WebSocketDemo'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
 
 // Import layout components
 import Layout from './components/Layout';
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="websocket-demo" element={<WebSocketDemo />} />
           {/* More routes will be added here as the app grows */}
           <Route path="*" element={<NotFound />} />

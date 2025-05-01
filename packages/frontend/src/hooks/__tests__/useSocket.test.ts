@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 import { useSocket, useMultipleEvents } from '../useSocket';
 import { socketService } from '../../services/socket.service';
-import { SocketNamespace, SocketEventType } from '../../types/socket.types';
+import { SocketNamespace } from '../../types/socket.types';
 
 // Mock socket service
 jest.mock('../../services/socket.service', () => ({
@@ -112,7 +112,13 @@ describe('useSocket Hook', () => {
   it('should update event data when receiving an event', () => {
     // Create a handler capture function to access the handler passed to subscribe
     let capturedHandler: ((data: any) => void) | null = null;
-    (socketService.subscribe as jest.Mock).mockImplementation((namespace, event, handler) => {
+    (socketService.subscribe as jest.Mock).mockImplementation((
+      /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+      namespace,
+      /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+      event,
+      handler
+    ) => {
       capturedHandler = handler;
       return jest.fn();
     });
@@ -140,7 +146,13 @@ describe('useSocket Hook', () => {
   it('should handle event with _messageId property', () => {
     // Create a handler capture function
     let capturedHandler: ((data: any) => void) | null = null;
-    (socketService.subscribe as jest.Mock).mockImplementation((namespace, event, handler) => {
+    (socketService.subscribe as jest.Mock).mockImplementation((
+      /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+      namespace,
+      /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+      event,
+      handler
+    ) => {
       capturedHandler = handler;
       return jest.fn();
     });

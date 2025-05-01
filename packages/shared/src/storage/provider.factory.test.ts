@@ -20,6 +20,7 @@ describe('StorageProviderFactory', () => {
     updateMetadata = jest.fn();
     getPublicUrl = jest.fn();
     getSignedUrl = jest.fn();
+    getBasePath = jest.fn().mockReturnValue('/mock/base/path');
   }
 
   // Mock a second custom provider for testing multiple registrations
@@ -38,6 +39,7 @@ describe('StorageProviderFactory', () => {
     updateMetadata = jest.fn();
     getPublicUrl = jest.fn();
     getSignedUrl = jest.fn();
+    getBasePath = jest.fn().mockReturnValue('/second/mock/path');
   }
 
   beforeEach(() => {

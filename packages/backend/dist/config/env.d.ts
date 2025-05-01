@@ -1,0 +1,43 @@
+export declare const env: {
+    NODE_ENV: string;
+    PORT: number;
+    API_PREFIX: string;
+    CORS_ORIGIN: string;
+    MONGODB_URI: string;
+    STORAGE_TYPE: string;
+    STORAGE_PATH: string;
+    STORAGE_URL_PREFIX: string;
+    JWT_SECRET: string;
+    JWT_EXPIRES_IN: string;
+    YOUTUBE_API_KEY: string;
+    YOUTUBE_API_QUOTA_LIMIT: number;
+    YOUTUBE_API_QUOTA_RESET_INTERVAL: string;
+    YOUTUBE_API_CACHE_TTL: number;
+    YOUTUBE_API_MAX_RESULTS: number;
+    YOUTUBE_API_RETRY_ATTEMPTS: number;
+    YOUTUBE_API_RETRY_DELAY: number;
+    LOG_LEVEL: string;
+    LOG_FILE: string;
+};
+export interface EnvSchema {
+    NODE_ENV: string;
+    PORT: number;
+    API_PREFIX: string;
+    CORS_ORIGIN: string;
+    MONGODB_URI: string;
+    STORAGE_TYPE: string;
+    STORAGE_PATH: string;
+    STORAGE_URL_PREFIX: string;
+    JWT_SECRET: string;
+    JWT_EXPIRES_IN: string;
+    YOUTUBE_API_KEY: string;
+    YOUTUBE_API_QUOTA_LIMIT: number;
+    YOUTUBE_API_QUOTA_RESET_INTERVAL: string;
+    YOUTUBE_API_CACHE_TTL: number;
+    YOUTUBE_API_MAX_RESULTS: number;
+    YOUTUBE_API_RETRY_ATTEMPTS: number;
+    YOUTUBE_API_RETRY_DELAY: number;
+    LOG_LEVEL: string;
+    LOG_FILE: string;
+}
+export declare function validateEnv(): EnvSchema;

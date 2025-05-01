@@ -1,12 +1,1 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "types": ["jest", "node"]
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
-}
+{ "compilerOptions": { "composite": true, "outDir": "dist", "rootDir": "src", "declaration": true, "declarationMap": true, "sourceMap": true, "target": "es2016", "module": "commonjs", "esModuleInterop": true, "forceConsistentCasingInFileNames": true, "strict": true, "skipLibCheck": true }, "include": ["src/**/*"] }

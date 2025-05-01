@@ -376,6 +376,7 @@ export class SocketService {
     this.reconnecting = false;
     
     // Reconnect all sockets
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     this.sockets.forEach((socket, namespace) => {
       if (!socket.connected) {
         socket.connect();

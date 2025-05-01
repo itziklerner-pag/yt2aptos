@@ -1,7 +1,7 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { YouTubeController } from '../controllers/youtube.controller';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 /**
  * Channel Routes

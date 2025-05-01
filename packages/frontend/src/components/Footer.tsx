@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
           <p>&copy; {new Date().getFullYear()} YT2Aptos - YouTube Content Archiving System</p>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .app-footer {
           background-color: white;
           border-top: 1px solid var(--border-color);

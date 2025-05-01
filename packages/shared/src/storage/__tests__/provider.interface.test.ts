@@ -136,6 +136,10 @@ describe('StorageProvider Interface', () => {
     async getSignedUrl(path: string, expiry: number): Promise<string> {
       return `https://example.com/signed/${path}?token=mock&expires=${Date.now() + expiry * 1000}`;
     }
+    
+    getBasePath(): string {
+      return '/test/storage/path';
+    }
   }
   
   let provider: StorageProvider;

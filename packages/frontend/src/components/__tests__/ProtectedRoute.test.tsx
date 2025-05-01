@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute';
 import authService from '../../services/auth.service';
 import { Permission } from '../../../../shared/src/auth/types';

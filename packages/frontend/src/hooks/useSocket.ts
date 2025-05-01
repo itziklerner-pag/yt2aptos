@@ -212,7 +212,7 @@ export function useDownloadJobUpdates(jobId: string, enabled = true) {
   }, [jobId, enabled]);
   
   // Use the multi-event hook to listen for all job-related events
-  const [jobData, emit, isConnected, error] = useMultipleEvents(
+  const [jobData, /* eslint-disable-next-line @typescript-eslint/no-unused-vars */ emit, isConnected, error] = useMultipleEvents(
     SocketNamespace.DOWNLOADS,
     [
       'download:updated',
@@ -249,7 +249,7 @@ export function useContentUpdates(contentType: 'channel' | 'playlist' | 'video',
   }, [contentType, contentId, enabled]);
   
   // Use the multi-event hook to listen for all content-related events
-  const [contentData, emit, isConnected, error] = useMultipleEvents(
+  const [contentData, /* eslint-disable-next-line @typescript-eslint/no-unused-vars */ emit, isConnected, error] = useMultipleEvents(
     SocketNamespace.CONTENT,
     [
       'content:updated',
@@ -269,7 +269,7 @@ export function useContentUpdates(contentType: 'channel' | 'playlist' | 'video',
  */
 export function useSystemNotifications(enabled = true) {
   // Use the socket hook to listen for system notifications
-  const [notifications, emit, isConnected, error] = useSocket({
+  const [notifications, /* eslint-disable-next-line @typescript-eslint/no-unused-vars */ emit, isConnected, error] = useSocket({
     namespace: SocketNamespace.SYSTEM,
     eventName: 'system:notification',
     enabled

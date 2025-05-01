@@ -107,8 +107,8 @@ describe('User Model', () => {
     expect(retrievedUser!.email).toBe(typedUser.email);
     expect(retrievedUser!.password).toBe(typedUser.password);
     expect(retrievedUser!.isAdmin).toBe(typedUser.isAdmin);
-    expect(retrievedUser!.profile.displayName).toBe(typedUser.profile.displayName);
-    expect(retrievedUser!.profile.bio).toBe(typedUser.profile.bio);
+    expect(retrievedUser!.profile!.displayName).toBe(typedUser.profile!.displayName);
+    expect(retrievedUser!.profile!.bio).toBe(typedUser.profile!.bio);
   });
 
   it('should exclude password in toJSON transformation', async () => {

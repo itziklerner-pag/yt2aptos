@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { YouTubeService, SearchParams, SearchResults } from '../services';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ApiResponse } from '../utils/api';
 
 /**

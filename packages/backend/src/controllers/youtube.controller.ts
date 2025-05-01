@@ -1,12 +1,4 @@
-import { Request as ExpressRequest, Response } from 'express';
-
-// Extended request interface with optional user property
-interface Request extends ExpressRequest {
-  user?: {
-    id: string;
-    [key: string]: any;
-  };
-}
+import { Request, Response } from 'express';
 import { youtubeService } from '../services/youtube.service';
 import { logError } from '../utils/logger';
 import { Channel } from '../models/channel.model';
@@ -83,7 +75,7 @@ export class YouTubeController {
   static async addChannel(req: Request, res: Response) {
     try {
       const { channelId } = req.body;
-      const userId = req.body.userId || req.user?.id; // Assuming auth middleware sets req.user
+      const userId = req.body.userId || req.user?.userId; // Assuming auth middleware sets req.user
       
       if (!channelId) {
         return res.status(400).json({ 
@@ -207,7 +199,7 @@ export class YouTubeController {
   static async addPlaylist(req: Request, res: Response) {
     try {
       const { playlistId, channelId } = req.body;
-      const userId = req.body.userId || req.user?.id; // Assuming auth middleware sets req.user
+      const userId = req.body.userId || req.user?.userId; // Assuming auth middleware sets req.user
       
       if (!playlistId || !channelId) {
         return res.status(400).json({ 
@@ -428,7 +420,7 @@ export class YouTubeController {
    */
   static async getRecommendations(req: Request, res: Response) {
     try {
-      const userId = req.params.userId || req.user?.id; // Assuming auth middleware sets req.user
+      const userId = req.params.userId || req.user?.userId; // Assuming auth middleware sets req.user
       
       if (!userId) {
         return res.status(401).json({ 

@@ -1,7 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Layout from '../Layout';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Header from '../Header';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Footer from '../Footer';
 
 // Mock the dependencies

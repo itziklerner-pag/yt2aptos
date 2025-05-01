@@ -1,0 +1,62 @@
+2025-04-30 22:33:11 INFO: Initialized YouTube API service
+2025-04-30 22:33:11 INFO: Initialized Aptos client for network: testnet
+2025-04-30 22:33:11 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-04-30 22:33:11 INFO: YtdlpService initialized with 5 quality profiles
+2025-04-30 22:33:11 INFO: Download Queue Service initialized with config:
+2025-04-30 22:33:11 INFO: PostProcessingService initialized with config:
+2025-04-30 22:33:11 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-04-30 22:33:11 INFO: MongoDB connection established successfully
+2025-04-30 22:33:11 INFO: Storage service initialized with provider: local
+2025-04-30 22:33:11 INFO: YouTube API service initialized
+2025-04-30 22:33:11 INFO: WebSocket namespaces initialized
+2025-04-30 22:33:11 INFO: WebSocket server initialized
+2025-04-30 22:33:11 INFO: WebSocket server initialized
+2025-04-30 22:33:11 INFO: Server started in development mode
+2025-04-30 22:33:11 INFO: Listening on port 3000
+2025-04-30 22:33:11 INFO: API available at /api
+2025-04-30 22:34:31 ERROR: 404 - Route not found: GET /s3: Route not found: GET /s3
+2025-04-30 22:34:31 ERROR: 404 - Route not found: GET /favicon.ico: Route not found: GET /favicon.ico
+2025-04-30 22:35:11 ERROR: 404 - Route not found: GET /: Route not found: GET /
+2025-05-01 07:28:12 INFO: Shutting down server...
+2025-05-01 07:28:19 INFO: Initialized YouTube API service
+2025-05-01 07:28:20 INFO: Initialized Aptos client for network: testnet
+2025-05-01 07:28:20 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 07:28:20 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 07:28:20 INFO: Download Queue Service initialized with config:
+2025-05-01 07:28:20 INFO: PostProcessingService initialized with config:
+2025-05-01 07:28:20 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 07:28:20 INFO: MongoDB connection established successfully
+2025-05-01 07:28:20 INFO: Storage service initialized with provider: local
+2025-05-01 07:28:20 INFO: YouTube API service initialized
+2025-05-01 07:28:20 INFO: WebSocket namespaces initialized
+2025-05-01 07:28:20 INFO: WebSocket server initialized
+2025-05-01 07:28:20 INFO: WebSocket server initialized
+2025-05-01 07:28:20 INFO: Server started in development mode
+2025-05-01 07:28:20 INFO: Listening on port 3000
+2025-05-01 07:28:20 INFO: API available at /api
+2025-05-01 07:29:28 ERROR: 404 - Route not found: GET /dashboard: Route not found: GET /dashboard
+2025-05-01 07:29:29 ERROR: 404 - Route not found: GET /favicon.ico: Route not found: GET /favicon.ico
+2025-05-01 07:31:56 INFO: Shutting down server...
+2025-05-01 07:31:57 INFO: Initialized YouTube API service
+2025-05-01 07:31:58 INFO: Initialized Aptos client for network: testnet
+2025-05-01 07:31:58 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 07:31:58 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 07:31:58 INFO: Download Queue Service initialized with config:
+2025-05-01 07:31:58 INFO: PostProcessingService initialized with config:
+2025-05-01 07:31:58 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 07:31:58 INFO: MongoDB connection established successfully
+2025-05-01 07:31:58 INFO: Storage service initialized with provider: local
+2025-05-01 07:31:58 INFO: YouTube API service initialized
+2025-05-01 07:31:58 INFO: WebSocket namespaces initialized
+2025-05-01 07:31:58 INFO: WebSocket server initialized
+2025-05-01 07:31:58 INFO: WebSocket server initialized
+2025-05-01 07:31:58 INFO: Server started in development mode
+2025-05-01 07:31:58 INFO: Listening on port 3000
+2025-05-01 07:31:58 INFO: API available at /api
+2025-05-01 07:34:22 ERROR: 404 - Route not found: GET /: Route not found: GET /
+2025-05-01 07:34:24 ERROR: 404 - Route not found: GET /service-worker.js: Route not found: GET /service-worker.js
+2025-05-01 07:34:25 ERROR: 404 - Route not found: GET /: Route not found: GET /
+2025-05-01 07:34:25 ERROR: 404 - Route not found: GET /favicon.ico: Route not found: GET /favicon.ico
+2025-05-01 07:34:28 ERROR: 404 - Route not found: GET /: Route not found: GET /
+2025-05-01 07:34:28 ERROR: 404 - Route not found: GET /favicon.ico: Route not found: GET /favicon.ico
+2025-05-01 07:37:16 INFO: Shutting down server...
