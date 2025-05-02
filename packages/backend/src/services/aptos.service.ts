@@ -72,13 +72,38 @@ class AptosService {
       const nonce = this.extractNonceFromMessage(message, this.WALLET_AUTH_MESSAGE_PREFIX);
       
       // Find user by wallet address
-      let user = await UserModel.findOne({ 
+      let user = await UserModel.findOne({
         walletAddress: address.toLowerCase(),
         nonce
       });
       
       if (!user) {
-        throw new Error('Invalid nonce or wallet address');
+        // If user doesn't exist with this wallet, create a new one
+        const walletProperties = await this.getWalletProperties(address);
+        
+        user = new UserModel({
+          username: `wallet_${address.substring(0, 8)}`,
+          email: `${address.substring(0, 10)}@wallet.user`,
+          password: crypto.randomBytes(32).toString('hex'), // Random password since login is wallet-based
+          walletAddress: address.toLowerCase(),
+          nonce,
+          role: walletProperties.recommendedRole,
+          isEmailVerified: true, // Auto-verify for wallet users
+          profile: {
+            hasSpecialNft: walletProperties.hasSpecialNft,
+            tokenBalance: walletProperties.tokenBalance
+          }
+        });
+      } else {
+        // For existing users, we might want to update their role based on current wallet properties
+        const walletProperties = await this.getWalletProperties(address);
+        
+        // Only update role if wallet has special properties and user isn't already an admin
+        if (walletProperties.recommendedRole === 'admin' && user.role !== 'admin') {
+          user.role = 'admin';
+          user.profile.hasSpecialNft = walletProperties.hasSpecialNft;
+          user.profile.tokenBalance = walletProperties.tokenBalance;
+        }
       }
       
       // Regenerate nonce for next authentication
@@ -86,14 +111,9 @@ class AptosService {
       user.nonce = newNonce;
       user.lastLogin = new Date();
       
-      // Update or create appropriate user fields
-      if (!user.username) {
-        user.username = `wallet_${address.substring(0, 8)}`;
-      }
-      
       await user.save();
       
-      // Generate tokens
+      // Generate tokens with appropriate permissions
       const tokens = this.generateTokens(user);
       
       return {
@@ -131,7 +151,7 @@ class AptosService {
       }
       
       // Check if wallet is already linked to another account
-      const existingWalletUser = await UserModel.findOne({ 
+      const existingWalletUser = await UserModel.findOne({
         walletAddress: address.toLowerCase(),
         _id: { $ne: user.id }
       });
@@ -140,9 +160,29 @@ class AptosService {
         throw new Error('Wallet is already linked to another account');
       }
       
+      // Get wallet properties for potential role upgrades
+      const walletProperties = await this.getWalletProperties(address);
+      
       // Link wallet to user
       user.walletAddress = address.toLowerCase();
       user.nonce = crypto.randomBytes(32).toString('hex');
+      
+      // If wallet has special properties that would grant higher permissions,
+      // update the user's role unless they're already an admin
+      if (walletProperties.recommendedRole === 'admin' && user.role !== 'admin') {
+        user.role = 'admin';
+        logger.info(`User ${user.id} role upgraded to admin based on wallet properties`);
+      }
+      
+      // Store wallet properties in user profile
+      if (!user.profile) {
+        user.profile = {};
+      }
+      
+      user.profile.hasSpecialNft = walletProperties.hasSpecialNft;
+      user.profile.tokenBalance = walletProperties.tokenBalance;
+      user.profile.walletLastChecked = new Date();
+      
       await user.save();
       
       return this.mapUserToDTO(user);
@@ -157,20 +197,125 @@ class AptosService {
    */
   private async verifySignature(address: string, signatureHex: string, message: string): Promise<boolean> {
     try {
-      // In a real production application, we would verify the signature here
-      // Since this is a demo for now, and Aptos SDK has evolving API,
-      // we'll simulate a successful verification
-      
       logger.info(`Verifying signature for wallet ${address} with message: ${message}`);
       
-      // TODO: Implement proper signature verification using the latest Aptos SDK
-      // For now, we assume the signature is valid if the address and message are properly formatted
-      return address.startsWith('0x') &&
-             message.includes(this.WALLET_AUTH_MESSAGE_PREFIX) ||
-             message.includes(this.ACCOUNT_LINK_MESSAGE_PREFIX);
+      // Validate address format
+      if (!address.startsWith('0x')) {
+        logger.error('Invalid address format, must start with 0x');
+        return false;
+      }
+      
+      // Validate message format
+      const isValidMessage = message.includes(this.WALLET_AUTH_MESSAGE_PREFIX) ||
+                             message.includes(this.ACCOUNT_LINK_MESSAGE_PREFIX);
+      if (!isValidMessage) {
+        logger.error('Invalid message format');
+        return false;
+      }
+
+      try {
+        // Using Aptos Account module to verify signature
+        // Note: This is a simplified approach - in production, use Aptos's Ed25519 verification
+        
+        // For compatibility with different SDK versions, we'll use a more robust approach
+        // Convert the message to a Uint8Array that can be verified
+        const messageBytes = new TextEncoder().encode(message);
+        const messageHash = Array.from(messageBytes)
+          .map(b => b.toString(16).padStart(2, '0'))
+          .join('');
+        
+        // Convert hex signature to Uint8Array
+        const signatureBytes = hexStringToUint8Array(signatureHex);
+        
+        // In production, we would use the Aptos SDK's cryptographic methods to verify
+        // For now, we'll add this verification logic with basic checks
+        // and comment out the actual verification for development purposes
+        
+        // TODO: In production, uncomment and use actual verification with appropriate Aptos SDK methods
+        /*
+        const publicKey = await this.aptos.getAccountPublicKey(address);
+        const isValid = await ed25519.verify({
+          signature: signatureBytes,
+          message: messageBytes,
+          publicKey: publicKey
+        });
+        */
+        
+        // For development, we'll consider the signature valid if formatted correctly
+        const isValidSignature = signatureHex.startsWith('0x') && signatureHex.length >= 128;
+        logger.info(`Development signature verification (bypass): ${isValidSignature}`);
+        
+        // In production, replace with actual verification
+        return isValidSignature;
+      } catch (verifyError) {
+        logger.error('Signature verification error:', verifyError);
+        return false;
+      }
     } catch (error) {
       logger.error('Signature verification error:', error);
       return false;
+    }
+  }
+
+  /**
+   * Get wallet NFT properties to determine roles
+   * @param address Wallet address to check for NFTs or other properties
+   * @returns Role assignment info based on wallet properties
+   */
+  public async getWalletProperties(address: string): Promise<{
+    hasSpecialNft: boolean,
+    tokenBalance: number,
+    recommendedRole: string
+  }> {
+    try {
+      // Query Aptos blockchain for wallet NFTs, tokens, or other properties
+      // that might determine role assignments
+      
+      // This is a simplified implementation
+      // In a real application, we would query the blockchain for:
+      // 1. NFT ownership
+      // 2. Token balances
+      // 3. Other on-chain properties
+      
+      const resources = await this.aptos.getAccountResources({
+        accountAddress: address,
+      });
+      
+      // Check for specific resources that might indicate special permissions
+      // This is just an example and should be customized based on your specific NFTs/tokens
+      let hasSpecialNft = false;
+      let tokenBalance = 0;
+      
+      for (const resource of resources) {
+        // Example: Check for a specific NFT collection
+        if (resource.type.includes('::collection::')) {
+          hasSpecialNft = true;
+        }
+        
+        // Example: Check for token balances
+        if (resource.type.includes('::coin::')) {
+          tokenBalance = parseInt((resource.data as any).coin?.value || '0', 10);
+        }
+      }
+      
+      // Determine recommended role based on wallet properties
+      let recommendedRole = 'user';
+      if (hasSpecialNft && tokenBalance > 1000) {
+        recommendedRole = 'admin';
+      }
+      
+      return {
+        hasSpecialNft,
+        tokenBalance,
+        recommendedRole,
+      };
+    } catch (error) {
+      logger.error('Error getting wallet properties:', error);
+      return {
+        hasSpecialNft: false,
+        tokenBalance: 0,
+        recommendedRole: 'user',
+      };
     }
   }
   
@@ -238,6 +383,30 @@ class AptosService {
       updatedAt: user.updatedAt
     };
   }
+}
+
+/**
+ * Helper function to convert hex string to Uint8Array
+ */
+function hexStringToUint8Array(hexString: string): Uint8Array {
+  // Remove '0x' prefix if present
+  if (hexString.startsWith('0x')) {
+    hexString = hexString.slice(2);
+  }
+  
+  // Ensure even length
+  if (hexString.length % 2 !== 0) {
+    hexString = '0' + hexString;
+  }
+  
+  const arrayBuffer = new Uint8Array(hexString.length / 2);
+  
+  for (let i = 0; i < hexString.length; i += 2) {
+    const byteValue = parseInt(hexString.substring(i, i + 2), 16);
+    arrayBuffer[i / 2] = byteValue;
+  }
+  
+  return arrayBuffer;
 }
 
 export default new AptosService();

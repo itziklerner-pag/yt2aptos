@@ -60,3 +60,292 @@
 2025-05-01 07:34:28 ERROR: 404 - Route not found: GET /: Route not found: GET /
 2025-05-01 07:34:28 ERROR: 404 - Route not found: GET /favicon.ico: Route not found: GET /favicon.ico
 2025-05-01 07:37:16 INFO: Shutting down server...
+2025-05-01 12:24:43 INFO: Initialized YouTube API service
+2025-05-01 12:24:43 INFO: Initialized Aptos client for network: testnet
+2025-05-01 12:24:44 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 12:24:44 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 12:24:44 INFO: PostProcessingService initialized with config:
+2025-05-01 12:24:44 INFO: MetadataService initialized
+2025-05-01 12:24:44 INFO: Download Queue Service initialized with config:
+2025-05-01 12:24:44 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 12:24:44 INFO: MongoDB connection established successfully
+2025-05-01 12:24:44 INFO: Storage service initialized with provider: local
+2025-05-01 12:24:44 INFO: YouTube API service initialized
+2025-05-01 12:24:44 INFO: WebSocket namespaces initialized
+2025-05-01 12:24:44 INFO: WebSocket server initialized
+2025-05-01 12:24:44 INFO: WebSocket server initialized
+2025-05-01 12:24:44 INFO: Loaded 3 alert configurations
+2025-05-01 12:24:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:24:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:24:44 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 12:24:44 INFO: Metrics collection started
+2025-05-01 12:24:44 INFO: Monitoring service initialized
+2025-05-01 12:24:44 INFO: Monitoring service initialized
+2025-05-01 12:24:44 INFO: External API service initialized
+2025-05-01 12:24:44 INFO: External API service initialized
+2025-05-01 12:24:44 INFO: Server started in development mode
+2025-05-01 12:24:44 INFO: Listening on port 3000
+2025-05-01 12:24:44 INFO: API available at /api
+2025-05-01 12:25:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:25:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:25:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:26:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:26:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:26:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:27:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:27:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:27:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:28:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:28:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:28:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:29:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:29:44 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 12:29:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:29:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:30:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:30:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:30:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:31:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:31:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:31:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:32:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:32:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:32:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:33:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:33:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:33:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:34:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:34:44 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 12:34:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:34:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:35:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:35:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:35:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:36:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:36:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:36:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:37:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:37:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:37:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:38:14 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:38:44 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:38:44 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:38:54 INFO: Shutting down server...
+2025-05-01 12:39:48 INFO: Initialized YouTube API service
+2025-05-01 12:39:49 INFO: Initialized Aptos client for network: testnet
+2025-05-01 12:39:49 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 12:39:49 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 12:39:49 INFO: PostProcessingService initialized with config:
+2025-05-01 12:39:49 INFO: MetadataService initialized
+2025-05-01 12:39:49 INFO: Download Queue Service initialized with config:
+2025-05-01 12:39:49 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 12:39:49 INFO: MongoDB connection established successfully
+2025-05-01 12:39:49 INFO: Storage service initialized with provider: local
+2025-05-01 12:39:49 INFO: YouTube API service initialized
+2025-05-01 12:39:49 INFO: WebSocket namespaces initialized
+2025-05-01 12:39:49 INFO: WebSocket server initialized
+2025-05-01 12:39:49 INFO: WebSocket server initialized
+2025-05-01 12:39:49 INFO: Loaded 3 alert configurations
+2025-05-01 12:39:49 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:39:49 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 12:39:49 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 12:39:49 INFO: Metrics collection started
+2025-05-01 12:39:49 INFO: Monitoring service initialized
+2025-05-01 12:39:49 INFO: Monitoring service initialized
+2025-05-01 12:39:49 INFO: External API service initialized
+2025-05-01 12:39:49 INFO: External API service initialized
+2025-05-01 12:39:49 INFO: Server started in development mode
+2025-05-01 12:39:49 INFO: Listening on port 3000
+2025-05-01 12:39:49 INFO: API available at /api
+2025-05-01 12:40:19 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 12:40:24 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 12:40:24 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 12:40:24 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 12:40:24 INFO: Client connected to system namespace: VZNmzuyKNxMuo8kKAAAI
+2025-05-01 12:40:25 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 12:40:28 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 12:40:32 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 12:40:44 INFO: Shutting down server...
+2025-05-01 16:53:29 INFO: Initialized YouTube API service
+2025-05-01 16:53:30 INFO: Initialized Aptos client for network: testnet
+2025-05-01 16:53:30 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 16:53:30 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 16:53:30 INFO: PostProcessingService initialized with config:
+2025-05-01 16:53:30 INFO: MetadataService initialized
+2025-05-01 16:53:30 INFO: Download Queue Service initialized with config:
+2025-05-01 16:53:30 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 16:53:30 INFO: MongoDB connection established successfully
+2025-05-01 16:53:30 INFO: Storage service initialized with provider: local
+2025-05-01 16:53:30 INFO: YouTube API service initialized
+2025-05-01 16:53:30 INFO: WebSocket namespaces initialized
+2025-05-01 16:53:30 INFO: WebSocket server initialized
+2025-05-01 16:53:30 INFO: WebSocket server initialized
+2025-05-01 16:53:30 INFO: Loaded 3 alert configurations
+2025-05-01 16:53:30 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 16:53:30 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 16:53:30 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 16:53:30 INFO: Metrics collection started
+2025-05-01 16:53:30 INFO: Monitoring service initialized
+2025-05-01 16:53:30 INFO: Monitoring service initialized
+2025-05-01 16:53:30 INFO: External API service initialized
+2025-05-01 16:53:30 INFO: External API service initialized
+2025-05-01 16:53:30 INFO: Server started in development mode
+2025-05-01 16:53:30 INFO: Listening on port 3000
+2025-05-01 16:53:30 INFO: API available at /api
+2025-05-01 16:53:53 INFO: Shutting down server...
+2025-05-01 18:51:14 INFO: Initialized YouTube API service
+2025-05-01 18:51:15 INFO: Initialized Aptos client for network: testnet
+2025-05-01 18:51:15 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 18:51:15 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 18:51:15 INFO: PostProcessingService initialized with config:
+2025-05-01 18:51:15 INFO: MetadataService initialized
+2025-05-01 18:51:15 INFO: Download Queue Service initialized with config:
+2025-05-01 18:51:15 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 18:51:16 INFO: MongoDB connection established successfully
+2025-05-01 18:51:16 INFO: Storage service initialized with provider: local
+2025-05-01 18:51:16 INFO: YouTube API service initialized
+2025-05-01 18:51:16 INFO: WebSocket namespaces initialized
+2025-05-01 18:51:16 INFO: WebSocket server initialized
+2025-05-01 18:51:16 INFO: WebSocket server initialized
+2025-05-01 18:51:16 INFO: Loaded 3 alert configurations
+2025-05-01 18:51:16 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 18:51:16 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 18:51:16 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 18:51:16 INFO: Metrics collection started
+2025-05-01 18:51:16 INFO: Monitoring service initialized
+2025-05-01 18:51:16 INFO: Monitoring service initialized
+2025-05-01 18:51:16 INFO: External API service initialized
+2025-05-01 18:51:16 INFO: External API service initialized
+2025-05-01 18:51:16 INFO: Server started in development mode
+2025-05-01 18:51:16 INFO: Listening on port 3000
+2025-05-01 18:51:16 INFO: API available at /api
+2025-05-01 18:51:46 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 18:52:16 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 18:52:16 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 18:52:24 INFO: Shutting down server...
+2025-05-01 19:58:21 INFO: Initialized YouTube API service
+2025-05-01 19:58:22 INFO: Initialized Aptos client for network: testnet
+2025-05-01 19:58:22 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 19:58:22 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 19:58:22 INFO: PostProcessingService initialized with config:
+2025-05-01 19:58:22 INFO: MetadataService initialized
+2025-05-01 19:58:22 INFO: Download Queue Service initialized with config:
+2025-05-01 19:58:23 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 19:58:23 INFO: MongoDB connection established successfully
+2025-05-01 19:58:23 INFO: Storage service initialized with provider: local
+2025-05-01 19:58:23 INFO: YouTube API service initialized
+2025-05-01 19:58:23 INFO: WebSocket namespaces initialized
+2025-05-01 19:58:23 INFO: WebSocket server initialized
+2025-05-01 19:58:23 INFO: WebSocket server initialized
+2025-05-01 19:58:23 INFO: Loaded 3 alert configurations
+2025-05-01 19:58:23 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 19:58:23 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 19:58:23 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 19:58:23 INFO: Metrics collection started
+2025-05-01 19:58:23 INFO: Monitoring service initialized
+2025-05-01 19:58:23 INFO: Monitoring service initialized
+2025-05-01 19:58:23 INFO: External API service initialized
+2025-05-01 19:58:23 INFO: External API service initialized
+2025-05-01 19:58:23 INFO: Server started in development mode
+2025-05-01 19:58:23 INFO: Listening on port 3000
+2025-05-01 19:58:23 INFO: API available at /api
+2025-05-01 19:58:32 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:32 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:32 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:32 INFO: Client connected to system namespace: qVS-LFMxZr6up87YAAAI
+2025-05-01 19:58:33 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:33 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:33 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:33 INFO: Client connected to system namespace: Cs6IDSLLFNx2fWcoAAAR
+2025-05-01 19:58:34 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:34 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:37 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:37 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:42 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:43 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:58:53 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 19:59:09 ERROR: 404 - Route not found: GET /: Route not found: GET /
+2025-05-01 19:59:09 ERROR: 404 - Route not found: GET /: Route not found: GET /
+2025-05-01 19:59:09 ERROR: 404 - Route not found: GET /favicon.ico: Route not found: GET /favicon.ico
+2025-05-01 19:59:10 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:59:15 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:59:17 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:59:23 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 19:59:23 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 19:59:46 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 19:59:53 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:00:05 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:00:23 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:00:23 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:00:53 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:01:04 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:01:05 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:01:23 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:01:23 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:01:53 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:02:05 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:02:06 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:02:23 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:02:23 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:02:53 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:03:06 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:03:06 ERROR: Socket connection rejected: Authentication error: Token not provided: undefined
+2025-05-01 20:03:23 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 20:03:23 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:03:23 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:03:39 INFO: Shutting down server...
+2025-05-01 20:08:38 INFO: Initialized YouTube API service
+2025-05-01 20:08:39 INFO: Initialized Aptos client for network: testnet
+2025-05-01 20:08:39 INFO: Initialized local storage provider at /Users/itziklerner/dev/ai/aptos/yt2aptos/packages/backend/storage
+2025-05-01 20:08:39 INFO: YtdlpService initialized with 5 quality profiles
+2025-05-01 20:08:39 INFO: PostProcessingService initialized with config:
+2025-05-01 20:08:39 INFO: MetadataService initialized
+2025-05-01 20:08:39 INFO: Download Queue Service initialized with config:
+2025-05-01 20:08:39 INFO: Connecting to MongoDB: mongodb://localhost:27017/yt2aptos
+2025-05-01 20:08:39 INFO: MongoDB connection established successfully
+2025-05-01 20:08:39 INFO: Storage service initialized with provider: local
+2025-05-01 20:08:39 INFO: YouTube API service initialized
+2025-05-01 20:08:39 INFO: WebSocket namespaces initialized
+2025-05-01 20:08:39 INFO: WebSocket server initialized
+2025-05-01 20:08:39 INFO: WebSocket server initialized
+2025-05-01 20:08:39 INFO: Loaded 3 alert configurations
+2025-05-01 20:08:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:08:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:08:39 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 20:08:39 INFO: Metrics collection started
+2025-05-01 20:08:39 INFO: Monitoring service initialized
+2025-05-01 20:08:39 INFO: Monitoring service initialized
+2025-05-01 20:08:39 INFO: External API service initialized
+2025-05-01 20:08:39 INFO: External API service initialized
+2025-05-01 20:08:39 INFO: Server started in development mode
+2025-05-01 20:08:39 INFO: Listening on port 3000
+2025-05-01 20:08:39 INFO: API available at /api
+2025-05-01 20:09:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:09:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:09:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:10:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:10:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:10:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:11:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:11:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:11:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:12:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:12:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:12:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:13:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:13:39 INFO: Broadcast event monitoring:storageMetricsUpdated sent to all clients
+2025-05-01 20:13:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:13:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:14:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:14:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:14:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:15:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:15:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:15:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:16:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:16:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:16:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:17:09 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:17:39 INFO: Broadcast event monitoring:downloadMetricsUpdated sent to all clients
+2025-05-01 20:17:39 INFO: Broadcast event monitoring:systemMetricsUpdated sent to all clients
+2025-05-01 20:17:57 INFO: Shutting down server...

@@ -43,4 +43,12 @@ export interface StorageConfig {
     /** Default URL options */
     defaultUrlOptions?: UrlOptions;
 }
+/**
+ * Enum of supported storage provider types
+ */
+export declare enum StorageProviderType {
+    LOCAL = "local",
+    S3 = "s3",
+    AZURE = "azure"
+}
 //# sourceMappingURL=types.d.ts.map

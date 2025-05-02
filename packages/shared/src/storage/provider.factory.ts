@@ -1,6 +1,8 @@
 import { StorageProvider } from './provider.interface';
-import { StorageConfig } from './types';
+import { StorageConfig, StorageProviderType } from './types';
 import { LocalFileSystemProvider, LocalFileSystemConfig } from './providers/local-file-system.provider';
+import { S3Provider, S3ProviderConfig } from './providers/s3-provider';
+import { AzureBlobProvider, AzureBlobProviderConfig } from './providers/azure-blob-provider';
 
 /**
  * Factory for creating storage provider instances
@@ -10,7 +12,9 @@ export class StorageProviderFactory {
    * Map of registered provider types to their constructor functions
    */
   private static providers: Record<string, new (config: any) => StorageProvider> = {
-    local: LocalFileSystemProvider,
+    [StorageProviderType.LOCAL]: LocalFileSystemProvider,
+    [StorageProviderType.S3]: S3Provider,
+    [StorageProviderType.AZURE]: AzureBlobProvider,
   };
 
   /**
@@ -45,5 +49,23 @@ export class StorageProviderFactory {
    */
   static createLocalProvider(config: LocalFileSystemConfig): LocalFileSystemProvider {
     return new LocalFileSystemProvider(config);
+  }
+
+  /**
+   * Create an S3 storage provider
+   * @param config S3 configuration
+   * @returns S3 provider instance
+   */
+  static createS3Provider(config: S3ProviderConfig): S3Provider {
+    return new S3Provider(config);
+  }
+
+  /**
+   * Create an Azure Blob storage provider
+   * @param config Azure Blob configuration
+   * @returns Azure Blob provider instance
+   */
+  static createAzureBlobProvider(config: AzureBlobProviderConfig): AzureBlobProvider {
+    return new AzureBlobProvider(config);
   }
 }

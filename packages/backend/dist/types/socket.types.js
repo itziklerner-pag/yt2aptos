@@ -27,6 +27,12 @@ var SocketEventType;
     SocketEventType["SYSTEM_NOTIFICATION"] = "system:notification";
     SocketEventType["SYSTEM_ERROR"] = "system:error";
     SocketEventType["SYSTEM_MAINTENANCE"] = "system:maintenance";
+    // Monitoring events
+    SocketEventType["SYSTEM_METRICS_UPDATED"] = "monitoring:systemMetricsUpdated";
+    SocketEventType["DOWNLOAD_METRICS_UPDATED"] = "monitoring:downloadMetricsUpdated";
+    SocketEventType["STORAGE_METRICS_UPDATED"] = "monitoring:storageMetricsUpdated";
+    SocketEventType["ALERT_TRIGGERED"] = "monitoring:alertTriggered";
+    SocketEventType["ALERT_RESOLVED"] = "monitoring:alertResolved";
     // Acknowledgment events
     SocketEventType["ACK"] = "ack";
     SocketEventType["RECEIVED"] = "received";

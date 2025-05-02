@@ -179,18 +179,27 @@ export class PostProcessingService {
    * Set up event listeners for download job events
    */
   private setupEventListeners(): void {
-    if (this.config.processAutomatically) {
-      downloadQueueService.on(DownloadQueueService.EVENTS.JOB_COMPLETED, async (job, result) => {
+    // Defer event binding to avoid circular dependency issues
+    process.nextTick(() => {
+      if (this.config.processAutomatically && downloadQueueService) {
         try {
-          if (result.success && result.outputPath) {
-            logInfo(`Auto-processing completed download job: ${job._id}`);
-            await this.processDownloadedFile(result.outputPath, job, result);
-          }
+          logDebug('Setting up download queue event listeners');
+          downloadQueueService.on(DownloadQueueService.EVENTS.JOB_COMPLETED, async (job, result) => {
+            try {
+              if (result.success && result.outputPath) {
+                logInfo(`Auto-processing completed download job: ${job._id}`);
+                await this.processDownloadedFile(result.outputPath, job, result);
+              }
+            } catch (error) {
+              logError(`Error auto-processing download job ${job._id}:`, error as Error);
+            }
+          });
+          logDebug('Download queue event listeners set up successfully');
         } catch (error) {
-          logError(`Error auto-processing download job ${job._id}:`, error as Error);
+          logError('Failed to set up download queue event listeners:', error as Error);
         }
-      });
-    }
+      }
+    });
   }
   
   /**

@@ -5,6 +5,8 @@ const database_1 = require("./config/database");
 const env_1 = require("./config/env");
 const logger_1 = require("./utils/logger");
 const websocket_service_1 = require("./services/websocket.service");
+const monitoring_service_1 = require("./services/monitoring.service");
+const external_api_service_1 = require("./services/external-api.service");
 /**
  * Start the application server
  */
@@ -28,9 +30,18 @@ async function startServer() {
         // Initialize WebSocket service with HTTP server
         websocket_service_1.websocketService.initialize(server);
         (0, logger_1.logInfo)('WebSocket server initialized');
+        // Initialize monitoring service
+        monitoring_service_1.monitoringService.initialize();
+        (0, logger_1.logInfo)('Monitoring service initialized');
+        // Initialize external API service
+        external_api_service_1.externalApiService.initialize();
+        (0, logger_1.logInfo)('External API service initialized');
         // Handle graceful shutdown
         const shutdown = async () => {
             (0, logger_1.logInfo)('Shutting down server...');
+            // Shut down services
+            monitoring_service_1.monitoringService.shutdown();
+            external_api_service_1.externalApiService.shutdown();
             server.close(() => {
                 (0, logger_1.logInfo)('Express server closed');
                 process.exit(0);

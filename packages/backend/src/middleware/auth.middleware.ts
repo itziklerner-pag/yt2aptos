@@ -42,6 +42,35 @@ export const authMiddleware = {
       return res.status(500).json({ message: 'Internal server error' });
     }
   },
+
+  /**
+   * Check if authentication was performed using a wallet
+   */
+  requireWalletAuth: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (!req.user) {
+        return res.status(401).json({ message: 'Authentication required' });
+      }
+      
+      if (req.user.authMethod !== 'wallet') {
+        return res.status(403).json({
+          message: 'Wallet authentication required for this endpoint'
+        });
+      }
+      
+      // Ensure wallet address is present
+      if (!req.user.walletAddress) {
+        return res.status(403).json({
+          message: 'No wallet address associated with this account'
+        });
+      }
+      
+      next();
+    } catch (error) {
+      logger.error('Wallet auth check error:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  },
   
   /**
    * Check if user has specific permission

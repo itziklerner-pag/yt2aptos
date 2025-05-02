@@ -123,19 +123,29 @@ class PostProcessingService {
      * Set up event listeners for download job events
      */
     setupEventListeners() {
-        if (this.config.processAutomatically) {
-            download_queue_service_1.downloadQueueService.on(download_queue_service_1.DownloadQueueService.EVENTS.JOB_COMPLETED, async (job, result) => {
+        // Defer event binding to avoid circular dependency issues
+        process.nextTick(() => {
+            if (this.config.processAutomatically && download_queue_service_1.downloadQueueService) {
                 try {
-                    if (result.success && result.outputPath) {
-                        (0, logger_1.logInfo)(`Auto-processing completed download job: ${job._id}`);
-                        await this.processDownloadedFile(result.outputPath, job, result);
-                    }
+                    (0, logger_1.logDebug)('Setting up download queue event listeners');
+                    download_queue_service_1.downloadQueueService.on(download_queue_service_1.DownloadQueueService.EVENTS.JOB_COMPLETED, async (job, result) => {
+                        try {
+                            if (result.success && result.outputPath) {
+                                (0, logger_1.logInfo)(`Auto-processing completed download job: ${job._id}`);
+                                await this.processDownloadedFile(result.outputPath, job, result);
+                            }
+                        }
+                        catch (error) {
+                            (0, logger_1.logError)(`Error auto-processing download job ${job._id}:`, error);
+                        }
+                    });
+                    (0, logger_1.logDebug)('Download queue event listeners set up successfully');
                 }
                 catch (error) {
-                    (0, logger_1.logError)(`Error auto-processing download job ${job._id}:`, error);
+                    (0, logger_1.logError)('Failed to set up download queue event listeners:', error);
                 }
-            });
-        }
+            }
+        });
     }
     /**
      * Process a downloaded file

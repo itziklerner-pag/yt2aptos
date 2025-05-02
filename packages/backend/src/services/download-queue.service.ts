@@ -4,9 +4,10 @@ import { Video, VideoDocument } from '../models/video.model';
 import { User } from '../models/user.model';
 import { ytdlpService, DownloadResult, QualityProfile } from './ytdlp.service';
 import { storageService } from './storage.service';
+import { metadataService } from './metadata.service';
 import { websocketService } from './websocket.service';
 import { SocketEventType } from '../types/socket.types';
-import { logInfo, logError, logDebug } from '../utils/logger';
+import { logInfo, logError, logDebug, logWarning } from '../utils/logger';
 import EventEmitter from 'events';
 import path from 'path';
 import { setTimeout as sleep } from 'timers/promises';
@@ -534,6 +535,58 @@ export class DownloadQueueService extends EventEmitter {
         }
         
         await video.save();
+        
+        // Process enhanced metadata with the new metadata service
+        try {
+          logInfo(`Processing enhanced metadata for video ${video.youtubeId}`);
+          
+          // Extract comprehensive metadata using either file-based or API-based methods
+          let metadataResult;
+          
+          if (downloadResult.outputPath) {
+            // If we have a video file, use file-based extraction for most accurate metadata
+            metadataResult = await metadataService.extractMetadataFromFile(
+              downloadResult.outputPath,
+              video.youtubeId,
+              {
+                extractThumbnails: !downloadResult.thumbnailPath, // Skip if we already have a thumbnail
+                extractSubtitles: !video.hasSubtitles, // Skip if we already have subtitles
+                extractChapters: true,
+                generateSearchIndex: true,
+                includeRawMetadata: true,
+                extractKeywords: true,
+                persistToStorage: true
+              }
+            );
+          } else {
+            // Otherwise use API-based extraction
+            metadataResult = await metadataService.extractMetadata(
+              video.youtubeId,
+              {
+                extractThumbnails: !video.thumbnailUrl,
+                extractSubtitles: !video.hasSubtitles,
+                generateSearchIndex: true,
+                includeRawMetadata: true,
+                extractKeywords: true
+              }
+            );
+          }
+          
+          if (metadataResult.success && metadataResult.metadata) {
+            // Update the video with any additional metadata found
+            if (metadataResult.storagePath && (!video.metadataPath || video.metadataPath !== metadataResult.storagePath)) {
+              video.metadataPath = metadataResult.storagePath;
+              await video.save();
+            }
+            
+            logInfo(`Enhanced metadata processed successfully for video ${video.youtubeId}`);
+          } else if (!metadataResult.success) {
+            logWarning(`Enhanced metadata extraction failed for video ${video.youtubeId}: ${metadataResult.errorMessage}`);
+          }
+        } catch (metadataError) {
+          // Log but don't fail the download job if metadata extraction fails
+          logError(`Error processing enhanced metadata for video ${video.youtubeId}:`, metadataError as Error);
+        }
         
         // Remove from active jobs
         this.activeJobs.delete(jobId);

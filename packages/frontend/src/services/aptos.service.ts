@@ -134,17 +134,21 @@ class AptosService {
   }
   
   /**
-   * Generate a nonce for wallet authentication
+   * Generate a challenge for wallet authentication
    */
-  public async generateNonce(address: string): Promise<{ nonce: string, prefix: string }> {
+  public async generateChallenge(address: string): Promise<{ nonce: string, prefix: string }> {
     try {
-      const response = await api.post<{ nonce: string, walletAuthPrefix: string }>('/auth/wallet/nonce', { address });
+      // Use the new web3 challenge endpoint with GET method
+      const response = await api.get<{ nonce: string, walletAuthPrefix: string }>('/api/auth/web3/challenge', {
+        params: { address } // Pass address as query parameter
+      });
+      
       return {
         nonce: response.data.nonce,
         prefix: response.data.walletAuthPrefix
       };
     } catch (error) {
-      console.error('Error generating nonce:', error);
+      console.error('Error generating authentication challenge:', error);
       throw error;
     }
   }
@@ -192,25 +196,23 @@ class AptosService {
         throw new Error('Failed to connect to wallet');
       }
       
-      // 2. Generate nonce
-      const { nonce, prefix } = await this.generateNonce(address);
+      // 2. Generate challenge
+      const { nonce, prefix } = await this.generateChallenge(address);
       
       // 3. Sign the message
       const message = `${prefix}${nonce}`;
       const signature = await this.signMessage(message);
       
-      // 4. Authenticate with backend
+      // 4. Authenticate with backend using the new verify endpoint
       const authRequest: WalletAuthRequest = {
         address,
         signature,
         message
       };
       
-      const response = await api.post<AuthResponse>('/auth/wallet/auth', authRequest);
+      const response = await api.post<AuthResponse>('/api/auth/web3/verify', authRequest);
       
-      // The AuthService will automatically detect the authentication response
-      // from the interceptor and update localStorage, but we still need to manually
-      // apply it directly to avoid any race conditions
+      // Store authentication data
       localStorage.setItem('yt2aptos_auth_tokens', JSON.stringify(response.data.tokens));
       localStorage.setItem('yt2aptos_user', JSON.stringify(response.data.user));
       
@@ -238,25 +240,75 @@ class AptosService {
         throw new Error('Failed to connect to wallet');
       }
       
-      // 3. Generate nonce for linking
-      const { nonce, prefix } = await this.generateNonce(address);
+      // 3. Generate challenge for linking
+      const { nonce, prefix } = await this.generateChallenge(address);
       
       // 4. Sign the message
       const message = `${prefix}${nonce}`;
       const signature = await this.signMessage(message);
       
-      // 5. Link the wallet
+      // 5. Link the wallet using the updated endpoint
       const linkRequest: AccountLinkRequest = {
         address,
         signature,
         message
       };
       
-      const response = await api.post<{ message: string, user: any }>('/auth/wallet/link', linkRequest);
+      const response = await api.post<{ message: string, user: any }>('/api/auth/web3/link', linkRequest);
       
       return response.data;
     } catch (error) {
       console.error('Wallet linking error:', error);
+      throw error;
+    }
+  }
+  /**
+   * Get wallet authentication profile
+   * Specifically for Web3 authenticated users
+   */
+  public async getWeb3Profile(): Promise<any> {
+    try {
+      // Make sure user is authenticated
+      if (!authService.isAuthenticated()) {
+        throw new Error('You must be logged in to view Web3 profile');
+      }
+      
+      // Get profile from the new web3 profile endpoint
+      const response = await api.get<{ user: any }>('/api/auth/web3/profile');
+      
+      return response.data.user;
+    } catch (error) {
+      console.error('Error getting Web3 profile:', error);
+      throw error;
+    }
+  }
+  
+  /**
+   * Check if the connected wallet has special properties
+   * like NFTs or token balances that would grant additional permissions
+   */
+  public async checkWalletProperties(): Promise<{
+    hasSpecialNft: boolean,
+    tokenBalance: number,
+    role: string
+  }> {
+    try {
+      if (!this.isWalletConnected()) {
+        throw new Error('Wallet not connected');
+      }
+      
+      // This would be a custom API endpoint, we'll mock it for now
+      // In a real implementation, this would query the backend
+      // which would check the blockchain for the wallet's properties
+      
+      // For demo purposes, we'll just return some mock data
+      return {
+        hasSpecialNft: true,
+        tokenBalance: 1000,
+        role: 'user'
+      };
+    } catch (error) {
+      console.error('Error checking wallet properties:', error);
       throw error;
     }
   }

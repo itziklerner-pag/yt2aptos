@@ -18,4 +18,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./storage.service"), exports);
 __exportStar(require("./youtube.service"), exports);
 __exportStar(require("./websocket.service"), exports);
+__exportStar(require("./monitoring.service"), exports);
+__exportStar(require("./external-api.service"), exports);
+__exportStar(require("./metadata.service"), exports);
 //# sourceMappingURL=index.js.map

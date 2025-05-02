@@ -28,6 +28,13 @@ export enum SocketEventType {
   SYSTEM_ERROR = 'system:error',
   SYSTEM_MAINTENANCE = 'system:maintenance',
   
+  // Monitoring events
+  SYSTEM_METRICS_UPDATED = 'monitoring:systemMetricsUpdated',
+  DOWNLOAD_METRICS_UPDATED = 'monitoring:downloadMetricsUpdated',
+  STORAGE_METRICS_UPDATED = 'monitoring:storageMetricsUpdated',
+  ALERT_TRIGGERED = 'monitoring:alertTriggered',
+  ALERT_RESOLVED = 'monitoring:alertResolved',
+  
   // Acknowledgment events
   ACK = 'ack',
   RECEIVED = 'received',
@@ -77,6 +84,59 @@ export interface SystemNotificationPayload {
   timestamp: Date;
   code?: string;
   metadata?: Record<string, any>;
+}
+
+/**
+ * Monitoring related payload interfaces
+ */
+export interface SystemMetricsPayload {
+  cpu: {
+    usage: number;
+    loadAverage: number[];
+    cores: number;
+  };
+  memory: {
+    total: number;
+    free: number;
+    usage: number;
+  };
+  uptime: number;
+  timestamp: Date;
+}
+
+export interface DownloadMetricsPayload {
+  activeJobs: number;
+  queuedJobs: number;
+  completedJobs: number;
+  failedJobs: number;
+  averageSpeed: number;
+  totalDownloaded: number;
+  timestamp: Date;
+}
+
+export interface StorageMetricsPayload {
+  totalSpace: number;
+  usedSpace: number;
+  freeSpace: number;
+  providers: {
+    [provider: string]: {
+      usage: number;
+      count: number;
+    };
+  };
+  timestamp: Date;
+}
+
+export interface AlertPayload {
+  id: string;
+  configId: string;
+  type: 'system' | 'download' | 'storage';
+  severity: 'info' | 'warning' | 'error';
+  message: string;
+  value: number;
+  threshold: number;
+  timestamp: Date;
+  resolvedAt?: Date;
 }
 
 /**

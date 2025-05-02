@@ -32,17 +32,24 @@ router.post('/password-reset/request', AuthController.requestPasswordReset);
 router.post('/password-reset/reset', AuthController.resetPassword);
 
 /**
- * Wallet Authentication Routes
+ * Web3/Aptos Authentication Routes
  */
-// Generate nonce for wallet authentication
-router.post('/wallet/nonce', AuthController.generateWalletNonce);
+// Generate challenge for wallet authentication
+router.get('/web3/challenge', AuthController.generateWalletNonce);
 
-// Authenticate with wallet
-router.post('/wallet/auth', AuthController.walletAuth);
+// Verify wallet signature and authenticate
+router.post('/web3/verify', AuthController.walletAuth);
+
+// Get Web3 user profile
+router.get('/web3/profile',
+  authMiddleware.authenticate,
+  authMiddleware.requireWalletAuth,
+  AuthController.getCurrentUser
+);
 
 // Link wallet to existing account
-router.post('/wallet/link', 
-  authMiddleware.authenticate, 
+router.post('/web3/link',
+  authMiddleware.authenticate,
   AuthController.linkWallet
 );
 

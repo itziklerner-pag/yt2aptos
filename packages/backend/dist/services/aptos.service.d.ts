@@ -25,6 +25,16 @@ declare class AptosService {
      */
     private verifySignature;
     /**
+     * Get wallet NFT properties to determine roles
+     * @param address Wallet address to check for NFTs or other properties
+     * @returns Role assignment info based on wallet properties
+     */
+    getWalletProperties(address: string): Promise<{
+        hasSpecialNft: boolean;
+        tokenBalance: number;
+        recommendedRole: string;
+    }>;
+    /**
      * Extract nonce from authentication message
      */
     private extractNonceFromMessage;

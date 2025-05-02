@@ -28,13 +28,15 @@ router.post('/password-reset/request', auth_controller_1.AuthController.requestP
 // Reset password with token
 router.post('/password-reset/reset', auth_controller_1.AuthController.resetPassword);
 /**
- * Wallet Authentication Routes
+ * Web3/Aptos Authentication Routes
  */
-// Generate nonce for wallet authentication
-router.post('/wallet/nonce', auth_controller_1.AuthController.generateWalletNonce);
-// Authenticate with wallet
-router.post('/wallet/auth', auth_controller_1.AuthController.walletAuth);
+// Generate challenge for wallet authentication
+router.get('/web3/challenge', auth_controller_1.AuthController.generateWalletNonce);
+// Verify wallet signature and authenticate
+router.post('/web3/verify', auth_controller_1.AuthController.walletAuth);
+// Get Web3 user profile
+router.get('/web3/profile', auth_middleware_1.authMiddleware.authenticate, auth_middleware_1.authMiddleware.requireWalletAuth, auth_controller_1.AuthController.getCurrentUser);
 // Link wallet to existing account
-router.post('/wallet/link', auth_middleware_1.authMiddleware.authenticate, auth_controller_1.AuthController.linkWallet);
+router.post('/web3/link', auth_middleware_1.authMiddleware.authenticate, auth_controller_1.AuthController.linkWallet);
 exports.default = router;
 //# sourceMappingURL=auth.routes.js.map

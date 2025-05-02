@@ -14,6 +14,7 @@ const error_handler_middleware_1 = require("../middleware/error-handler.middlewa
 const env_1 = require("./env");
 const logger_1 = require("../utils/logger");
 const routes_1 = __importDefault(require("../routes"));
+const swagger_1 = require("./swagger");
 /**
  * Configure and set up the Express application
  * @returns Configured Express application
@@ -36,6 +37,8 @@ function configureApp() {
     }));
     // Register API routes
     app.use(env_1.env.API_PREFIX, routes_1.default);
+    // Setup Swagger documentation
+    (0, swagger_1.setupSwagger)(app);
     // Setup static file serving for the local file system provider
     if (env_1.env.STORAGE_TYPE === 'local') {
         app.use('/files', express_1.default.static(env_1.env.STORAGE_PATH));

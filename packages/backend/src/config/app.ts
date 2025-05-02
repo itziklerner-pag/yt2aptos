@@ -8,6 +8,7 @@ import { errorHandler, notFoundHandler } from '../middleware/error-handler.middl
 import { env } from './env';
 import { logStream } from '../utils/logger';
 import routes from '../routes';
+import { setupSwagger } from './swagger';
 
 /**
  * Configure and set up the Express application
@@ -34,6 +35,9 @@ export function configureApp(): Express {
   
   // Register API routes
   app.use(env.API_PREFIX, routes);
+  
+  // Setup Swagger documentation
+  setupSwagger(app);
   
   // Setup static file serving for the local file system provider
   if (env.STORAGE_TYPE === 'local') {

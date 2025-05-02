@@ -10,6 +10,7 @@ const video_model_1 = require("../models/video.model");
 const user_model_1 = require("../models/user.model");
 const ytdlp_service_1 = require("./ytdlp.service");
 const storage_service_1 = require("./storage.service");
+const metadata_service_1 = require("./metadata.service");
 const websocket_service_1 = require("./websocket.service");
 const socket_types_1 = require("../types/socket.types");
 const logger_1 = require("../utils/logger");
@@ -421,6 +422,49 @@ class DownloadQueueService extends events_1.default {
                     video.metadataPath = downloadResult.metadataPath;
                 }
                 await video.save();
+                // Process enhanced metadata with the new metadata service
+                try {
+                    (0, logger_1.logInfo)(`Processing enhanced metadata for video ${video.youtubeId}`);
+                    // Extract comprehensive metadata using either file-based or API-based methods
+                    let metadataResult;
+                    if (downloadResult.outputPath) {
+                        // If we have a video file, use file-based extraction for most accurate metadata
+                        metadataResult = await metadata_service_1.metadataService.extractMetadataFromFile(downloadResult.outputPath, video.youtubeId, {
+                            extractThumbnails: !downloadResult.thumbnailPath, // Skip if we already have a thumbnail
+                            extractSubtitles: !video.hasSubtitles, // Skip if we already have subtitles
+                            extractChapters: true,
+                            generateSearchIndex: true,
+                            includeRawMetadata: true,
+                            extractKeywords: true,
+                            persistToStorage: true
+                        });
+                    }
+                    else {
+                        // Otherwise use API-based extraction
+                        metadataResult = await metadata_service_1.metadataService.extractMetadata(video.youtubeId, {
+                            extractThumbnails: !video.thumbnailUrl,
+                            extractSubtitles: !video.hasSubtitles,
+                            generateSearchIndex: true,
+                            includeRawMetadata: true,
+                            extractKeywords: true
+                        });
+                    }
+                    if (metadataResult.success && metadataResult.metadata) {
+                        // Update the video with any additional metadata found
+                        if (metadataResult.storagePath && (!video.metadataPath || video.metadataPath !== metadataResult.storagePath)) {
+                            video.metadataPath = metadataResult.storagePath;
+                            await video.save();
+                        }
+                        (0, logger_1.logInfo)(`Enhanced metadata processed successfully for video ${video.youtubeId}`);
+                    }
+                    else if (!metadataResult.success) {
+                        (0, logger_1.logWarning)(`Enhanced metadata extraction failed for video ${video.youtubeId}: ${metadataResult.errorMessage}`);
+                    }
+                }
+                catch (metadataError) {
+                    // Log but don't fail the download job if metadata extraction fails
+                    (0, logger_1.logError)(`Error processing enhanced metadata for video ${video.youtubeId}:`, metadataError);
+                }
                 // Remove from active jobs
                 this.activeJobs.delete(jobId);
                 // Emit job completed event
